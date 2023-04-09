@@ -14,17 +14,21 @@ xmu = dependency('xmu')
 xt = dependency('xt')
 zlib = dependency('zlib')
 
-m = cc.find_library('m', required: false)
+lib_dirs = []
+inc_dirs = []
 if host_machine.system() == 'darwin'
-  motif = cc.find_library('Xm',
-    dirs: meson.current_source_dir() + '/libXm/osx')
-  motif_headers = include_directories('libXm/osx')
-else
-  motif = cc.find_library('Xm')
-  if not cc.has_header('Xm/Xm.h')
-    error('Motif headers not found.')
-  endif
+  lib_dirs += meson.current_source_dir() + '/libXm/osx'
+  inc_dirs += include_directories('libXm/osx')
+elif host_machine.system() == 'openbsd'
+  lib_dirs += '/usr/local/lib'
+  inc_dirs += include_directories('/usr/local/include')
 endif
+
+motif = cc.find_library('Xm', dirs: lib_dirs)
+if not cc.has_header('Xm/Xm.h', include_directories: inc_dirs)
+  error('Motif headers not found.')
+endif
+m = cc.find_library('m', required: false)
 
 subdir('libastro')
 subdir('libip')
@@ -33,10 +37,7 @@ subdir('GUI/xephem')
 
 xephem_libs = [astro, lilxml, ip]
 xephem_deps = [libjpeg, libpng, m, motif, ssl, xext, xmu, xt, zlib]
-xephem_inc_dirs = [astro_headers, ip_headers, lilxml_headers]
-if host_machine.system() == 'darwin'
-  xephem_inc_dirs += motif_headers
-endif
+xephem_inc_dirs = [inc_dirs, astro_headers, ip_headers, lilxml_headers]
 
 xephem = executable('xephem', xephem_src,
   link_with: xephem_libs,
