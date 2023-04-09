@@ -87,6 +87,13 @@ configure_file(configuration: XEphem_data,
   install_dir: '/etc',
 )
 
+if host_machine.system() != 'darwin'
+  install_data('XEphem.png',
+    install_dir: join_paths(get_option('datadir'), 'icons/hicolor/128x128/apps'))
+  install_data('io.github.xephem.desktop',
+    install_dir: join_paths(get_option('datadir'), 'applications'))
+endif
+
 install_man('xephem.1')
 install_subdir('auxil', install_dir: shared_dir)
 install_subdir('catalogs', install_dir: shared_dir)
