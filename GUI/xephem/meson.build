@@ -76,4 +76,22 @@ xephem_src = files(
   'xmisc.c',
 )
 
+shared_dir = get_option('datadir') + '/xephem'
+
+XEphem_data = configuration_data()
+shared_dir = join_paths(get_option('prefix'), get_option('datadir'), 'xephem')
+XEphem_data.set('SHARED_DIR', shared_dir)
+configure_file(configuration: XEphem_data,
+  input: 'XEphem.in',
+  output: 'XEphem',
+  install_dir: '/etc',
+)
+
 install_man('xephem.1')
+install_subdir('auxil', install_dir: shared_dir)
+install_subdir('catalogs', install_dir: shared_dir)
+install_subdir('fifos', install_dir: shared_dir)
+install_subdir('fits', install_dir: shared_dir)
+install_subdir('gallery', install_dir: shared_dir)
+install_subdir('help', install_dir: shared_dir)
+install_subdir('lo', install_dir: shared_dir)
