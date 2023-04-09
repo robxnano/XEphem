@@ -19,9 +19,12 @@ inc_dirs = []
 if host_machine.system() == 'darwin'
   lib_dirs += meson.current_source_dir() + '/libXm/osx'
   inc_dirs += include_directories('libXm/osx')
-elif host_machine.system() == 'openbsd'
+elif host_machine.system() in ['freebsd', 'openbsd']
   lib_dirs += '/usr/local/lib'
   inc_dirs += include_directories('/usr/local/include')
+elif host_machine.system() == 'netbsd'
+  lib_dirs += '/usr/pkg/lib'
+  inc_dirs += include_directories('/usr/pkg/include')
 endif
 
 motif = cc.find_library('Xm', dirs: lib_dirs)
