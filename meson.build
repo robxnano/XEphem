@@ -41,6 +41,9 @@ subdir('GUI/xephem')
 xephem_libs = [astro, lilxml, ip]
 xephem_deps = [libjpeg, libpng, m, motif, ssl, xext, xmu, xt, zlib]
 xephem_inc_dirs = [inc_dirs, astro_headers, ip_headers, lilxml_headers]
+if host_machine.system() == 'sunos'
+  xephem_deps += [cc.find_library('socket'), cc.find_library('nsl')]
+endif
 
 xephem = executable('xephem', xephem_src,
   link_with: xephem_libs,
