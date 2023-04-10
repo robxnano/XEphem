@@ -1,11 +1,14 @@
 project('xephem', 'c',
   version: '4.2.0',
   meson_version: '>= 0.30.0',
-  default_options: ['c_std=gnu89', 'warning_level=1'],
+  default_options: ['c_std=c89', 'warning_level=1',
+    'buildtype=release', 'strip=true'],
 )
 
 cc = meson.get_compiler('c')
 gtk_update_icon_cache = find_program('gtk-update-icon-cache', required: false)
+
+add_project_arguments('-D_XOPEN_SOURCE=500', language: 'c')
 
 libjpeg = dependency('libjpeg')
 libpng = dependency('libpng')
