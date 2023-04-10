@@ -5,6 +5,7 @@ project('xephem', 'c',
 )
 
 cc = meson.get_compiler('c')
+gtk_update_icon_cache = find_program('gtk-update-icon-cache', required: false)
 
 libjpeg = dependency('libjpeg')
 libpng = dependency('libpng')
@@ -51,3 +52,8 @@ xephem = executable('xephem', xephem_src,
   include_directories: xephem_inc_dirs,
   install: true,
 )
+
+if gtk_update_icon_cache.found()
+  meson.add_install_script('gtk-update-icon-cache', '-f', '-t',
+    join_paths(get_option('prefix'), get_option('datadir'), 'icons', 'hicolor'))
+endif
