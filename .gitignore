@@ -7,3 +7,8 @@
 # macOS HFS+ files
 
 ._*
+
+# Flatpak build files
+flatpak/repo*
+flatpak/staging*
+flatpak/*.flatpak

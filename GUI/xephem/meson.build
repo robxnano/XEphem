@@ -79,7 +79,7 @@ xephem_src = files(
 metainfo_file = files('io.github.xephem.metainfo.xml')
 
 if host_machine.system() != 'darwin'
-  install_data('XEphem.png',
+  install_data('io.github.xephem.png',
     install_dir: join_paths(get_option('datadir'), 'icons/hicolor/128x128/apps'))
   install_data('io.github.xephem.desktop',
     install_dir: join_paths(get_option('datadir'), 'applications'))

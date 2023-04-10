@@ -1,0 +1,15 @@
+diff --git a/makefile.in.old b/Makefile.in
+index 6539938..5b7bd94 100644
+--- a/makefile.in.old
++++ b/Makefile.in
+@@ -389,9 +389,7 @@ SUBDIRS = bindings bitmaps \
+              lib \
+              include \
+              tools \
+-             clients \
+-             doc \
+-             demos
++             clients
+ 
+ AUTOMAKE_OPTIONS = 1.4
+ ACLOCAL_AMFLAGS = -I .

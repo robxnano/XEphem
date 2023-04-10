@@ -1,0 +1,62 @@
+app-id: io.github.xephem
+runtime: org.freedesktop.Platform
+runtime-version: '22.08'
+sdk: org.freedesktop.Sdk
+command: xephem
+finish-args:
+  - --share=ipc
+  - --share=network
+  - --socket=x11
+  - --filesystem=xdg-run/gvfs
+  - --filesystem=home
+
+modules:
+  - name: xbitmaps
+    buildsystem: autotools
+    sources:
+      - type: archive
+        url: https://github.com/freedesktop/bitmaps/archive/refs/tags/xbitmaps-1.1.1.tar.gz
+        sha256: b4d40eb80a3a627ec0b3c355e9e8a3a57e51ada01d3b5fc59c0786c1f5028e57
+
+  - name: xmu
+    buildsystem: autotools
+    sources:
+      - type: archive
+        url: https://github.com/freedesktop/xorg-libXmu/archive/refs/tags/libXmu-1.1.2.tar.gz
+        sha256: 69753e86c8bfcc7bd695c66fb396316cb1efcd23e354a6fdc83a89fc6e3bbacc
+
+  - name: motif
+    buildsystem: autotools
+    sources:
+      - type: archive
+        url: https://deb.debian.org/debian/pool/main/m/motif/motif_2.3.8.orig.tar.gz
+        sha256: 859b723666eeac7df018209d66045c9853b50b4218cecadb794e2359619ebce7
+      - type: patch
+        path: motif-2.3.8-no-doc-or-demos.patch
+
+  - name: xephem
+    buildsystem: meson
+    config-opts:
+      - -Dbuildtype=debugoptimized
+      - -Dstrip=false
+    sources:
+      - type: git
+        path: ..
+        branch: flatpak
+
+cleanup:
+  - /bin/mwm
+  - /bin/uil
+  - /bin/xmbind
+  - /include
+  - /lib/debug
+  - /lib/libXmuu.so*
+  - /lib/libUil.so*
+  - /lib/libMrm.so*
+  - /lib/pkgconfig
+  - /man
+  - /share/doc
+  - /share/man
+  - /share/pkgconfig
+  - "*.la"
+  - "*.a"
