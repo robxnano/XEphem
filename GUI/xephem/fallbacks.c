@@ -1,5 +1,9 @@
 #include <Xm/Xm.h>
 
+#ifndef XEPHEM_SHARE_DIR
+#define XEPHEM_SHARE_DIR "."
+#endif
+
 /* build this programmatically but put it in fallbacks[] */
 char Version_resource[50];
 
@@ -869,7 +873,7 @@ String fallbacks[] = {
     "XEphem.SOHOhost: sohowww.nascom.nasa.gov",
     "XEphem.SatViewUp: 0",
     "XEphem.SaturnBackground: #151515",
-    "XEphem.ShareDir: .",
+    "XEphem.ShareDir: " XEPHEM_SHARE_DIR,
     "XEphem.Sitename: Chicago, Illinois",
     "XEphem.SkyAnnotColor: #bfc1c6",
     "XEphem.SkyCnsBndColor: #435964",

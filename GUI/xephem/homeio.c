@@ -14,6 +14,9 @@
 
 #include "xephem.h"
 
+#ifndef XEPHEM_SHARE_DIR
+#define XEPHEM_SHARE_DIR "."
+#endif
 
 /* if path starts with `~' replace with $HOME.
  * if path starts with '.' replace with pwd.
@@ -210,7 +213,7 @@ getShareDir (void)
 		}
 	    }
 	    if (!basedir) {
-		char *homebase = expand_home (getXRes ("ShareDir", "."));
+		char *homebase = expand_home (getXRes ("ShareDir", XEPHEM_SHARE_DIR));
 		basedir = strcpy(malloc(strlen(homebase)+1), homebase);
 	    }
 	}

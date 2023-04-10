@@ -76,17 +76,6 @@ xephem_src = files(
   'xmisc.c',
 )
 
-shared_dir = get_option('datadir') + '/xephem'
-
-XEphem_data = configuration_data()
-shared_dir = join_paths(get_option('prefix'), get_option('datadir'), 'xephem')
-XEphem_data.set('SHARED_DIR', shared_dir)
-configure_file(configuration: XEphem_data,
-  input: 'XEphem.in',
-  output: 'XEphem',
-  install_dir: '/etc',
-)
-
 if host_machine.system() != 'darwin'
   install_data('XEphem.png',
     install_dir: join_paths(get_option('datadir'), 'icons/hicolor/128x128/apps'))

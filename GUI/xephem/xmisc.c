@@ -836,7 +836,6 @@ getXRes (char *name, char *def)
 	XtGetApplicationResources (toplevel_w, (void *)&res, &xr, 1, NULL, 0);
 	if (!res || strcmp (res, notfound) == 0)
 	    res = def;
-
 	return (res);
 }
 

@@ -8,6 +8,8 @@ project('xephem', 'c',
 cc = meson.get_compiler('c')
 gtk_update_icon_cache = find_program('gtk-update-icon-cache', required: false)
 
+shared_dir = join_paths(get_option('prefix'), get_option('datadir'), 'xephem')
+
 add_project_arguments('-D_XOPEN_SOURCE=500', language: 'c')
 
 libjpeg = dependency('libjpeg')
@@ -51,6 +53,7 @@ endif
 
 xephem = executable('xephem', xephem_src,
   link_with: xephem_libs,
+  c_args: '-DXEPHEM_SHARE_DIR="' + shared_dir + '"',
   dependencies: xephem_deps,
   include_directories: xephem_inc_dirs,
   install: true,
