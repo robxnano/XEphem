@@ -76,11 +76,23 @@ xephem_src = files(
   'xmisc.c',
 )
 
+metainfo_file = files('io.github.xephem.metainfo.xml')
+
 if host_machine.system() != 'darwin'
   install_data('XEphem.png',
     install_dir: join_paths(get_option('datadir'), 'icons/hicolor/128x128/apps'))
   install_data('io.github.xephem.desktop',
     install_dir: join_paths(get_option('datadir'), 'applications'))
+  install_data(metainfo_file,
+    install_dir: join_paths(get_option('datadir'), 'metainfo'))
+endif
+
+# Validate MetaInfo file
+
+ascli_exe = find_program('appstreamcli', required: false)
+if ascli_exe.found()
+  test('validate metainfo file', ascli_exe,
+    args: ['validate', '--no-net', '--pedantic', metainfo_file])
 endif
 
 install_man('xephem.1')

@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<component type="desktop-application">
+
+  <name>XEphem</name>
+  <id>io.github.xephem</id>
+  <summary>Astronomical ephemeris application</summary>
+  <developer_name>Elwood C. Downey</developer_name>
+  <launchable type="desktop-id">io.github.xephem.desktop</launchable>
+  <provides>
+    <binary>xephem</binary>
+  </provides>
+
+  <metadata_license>MIT</metadata_license>
+  <project_license>LGPL-2.1-or-later</project_license>
+
+  <url type="homepage">https://xephem.github.io/XEphem/Site/</url>
+  <url type="help">https://xephem.github.io/XEphem/Site/help/xephem.html</url>
+  <url type="bugtracker">https://github.com/xephem/xephem/issues</url>
+
+  <description>
+    <p>XEphem is a scientific-grade interactive astronomical ephemeris application. It can calculate ephemeris for astronomical objects and display the results in tabular or graphical output. XEphem can also be used to control telescopes, generate sky maps, perform image analysis and much more.</p>
+  </description>
+
+  <releases>
+    <release version="4.1.0" date="2021-09-13">
+      <description>
+        <ul>
+          <li>Downloads of Minor Planet Center files and of Earth weather maps
+            have both been fixed, thanks to new SSL support. Thank you, Lutz Mändle!</li>
+          <li>The files for the moons of Mars, Jupiter, Saturn, and Uranus
+            that expired at the end of 2020 have been updated through 2040.
+            Thank you, IMCCE!</li>
+        </ul>
+        <p>Updates from the Astronomical Almanac 2020:</p>
+        <ul>
+          <li>Pluto’s long-term orbital elements.</li>
+          <li>The ∆T table now runs through 2018.</li>
+        </ul>
+      </description>
+    </release>
+    <release version="4.0.2" date="2020-02-28">
+      <description>
+        <ul>
+          <li>Updated to the 2020-2025 World Magnetic Model.</li>
+          <li>Fixed Halifax time zone, which was an hour off.</li>
+          <li>Stop trying to link against `-lXp`, which X Windows no longer offers.</li>
+          <li>Tell Linux folks to compile against their native Motif libraries.</li>
+          <li>Remove pre-compiled Linux `libXm.a`: incompatible with modern X Windows.</li>
+          <li>First release from the GitHub repository.</li>
+        </ul>
+      </description>
+    </release>
+    <release version="4.0.1" date="2020-02-28">
+      <description>
+        <ul>
+          <li>Tweaked "versionmenu.c" to fix a compiler error.</li>
+          <li>Final release from the www.clearskyinstitute.com website.</li>
+        </ul>
+      </description>
+    </release>
+    <release version="4.0.0" date="2020-02-28">
+      <description>
+        <ul>
+          <li>Switched to the MIT License.</li>
+        </ul>
+      </description>
+    </release>
+  </releases>
+
+  <content_rating type="oars-1.1"/>
+
+</component>
